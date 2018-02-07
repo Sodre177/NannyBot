@@ -13,6 +13,8 @@ conf = Conf(CONF_FILE)
 TOKEN = conf.get("token")
 PREFIX = conf.get("prefix")
 AUTHORISED = conf.getintlist("authorised_users")
+HELP_STR = conf.getStr("custom_help_string") if conf.getStr("custom_help_string") else "Available Commands:"
+
 SCRIPTS = json.loads(conf.get("app_scripts"))
 LOGFILES = json.loads(conf.get("app_logfiles"))
 
@@ -51,7 +53,7 @@ async def reply(message, content):
 async def cmd_help(message, params):
     msg = ""
     if params == "":
-        msg = "```\nAvailable Commands:\n"
+        msg = "```\n{}\n".format(HELP_STR)
         for cmd in sorted(cmds):
             msg += " {} ".format(cmd)
         msg += "```"
