@@ -13,7 +13,7 @@ conf = Conf(CONF_FILE)
 TOKEN = conf.get("token")
 PREFIX = conf.get("prefix")
 AUTHORISED = conf.getintlist("authorised_users")
-HELP_STR = conf.getStr("custom_help_string") if conf.getStr("custom_help_string") else "Available Commands:"
+HELP_STR = conf.get("custom_help_string") if conf.get("custom_help_string") else "Available Commands:"
 
 SCRIPTS = json.loads(conf.get("app_scripts"))
 LOGFILES = json.loads(conf.get("app_logfiles"))
