@@ -53,7 +53,7 @@ async def reply(message, content):
 async def cmd_help(message, params):
     msg = ""
     if params == "":
-        msg = HELP_STR
+        msg = HELP_STR + "\n"
         for cmd in sorted(cmds):
             msg += " `{}` ".format(cmd)
     else:
@@ -147,7 +147,6 @@ for cmd in SCRIPTS:
 
 @client.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.online)
     print("Logged in as")
     print(client.user.name)
     print(client.user.id)
