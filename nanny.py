@@ -53,10 +53,9 @@ async def reply(message, content):
 async def cmd_help(message, params):
     msg = ""
     if params == "":
-        msg = "```\n{}\n".format(HELP_STR)
+        msg = HELP_STR
         for cmd in sorted(cmds):
-            msg += " {} ".format(cmd)
-        msg += "```"
+            msg += " `{}` ".format(cmd)
     else:
         params = params.split(' ')
         for cmd in params:
