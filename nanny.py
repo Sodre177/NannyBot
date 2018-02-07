@@ -33,7 +33,7 @@ def cmd(cmdName, helpStr="No help provided for this command"):
 
 #Utility
 async def execute(command):
-    p1 = subprocess.Popen(command, shell = True, stdin=None, stdout=subprocess.PIPE)
+    p1 = subprocess.Popen(command, shell = True, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out,err = p1.communicate()
     p1.stdout.close()
     p1.stderr.close()
