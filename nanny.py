@@ -181,5 +181,4 @@ async def cmd_parser(message, cmd, params):
         return
 
 
-#Commands
-
+client.run(TOKEN)
