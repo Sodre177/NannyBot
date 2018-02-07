@@ -89,7 +89,7 @@ async def cmd_logtail(message, params):
     if len(params) == 0:
         await reply(message, "Available logfiles: "+ ", ".join(sorted(LOGFILES)))
         return
-    if len(params) = 1:
+    if len(params) == 1:
         if len(LOGFILES) > 0:
             params[1] = next(iter(LOGFILES))
             await reply(message, "Assuming you meant logfile "+params[1])
