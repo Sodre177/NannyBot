@@ -53,7 +53,7 @@ async def cmd_help(message, params):
     if params == "":
         msg = "```\nAvailable Commands:\n"
         for cmd in sorted(cmds):
-            msg += "`{}`".format(cmd)
+            msg += " {} ".format(cmd)
         msg += "```"
     else:
         params = params.split(' ')
@@ -123,7 +123,10 @@ async def exec_script(message, params):
         await reply(message, "Running your command now")
         out = await execute(SCRIPTS[cmd] + " " + params)
         try:
-            await reply(message, "Output:\n```{}```".format(out))
+            if out:
+                await reply(message, "Output:\n```{}```".format(out))
+            else:
+                await reply(message, "The command produced no output")
         except:
             await reply(message, "I ran your command but couldn't print the output! Perhaps it was too long.")
     except:
