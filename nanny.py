@@ -36,7 +36,8 @@ async def execute(command):
     p1 = subprocess.Popen(command, shell = True, stdin=None, stdout=subprocess.PIPE)
     out,err = p1.communicate()
     p1.stdout.close()
-    return out.decode('utf-8')
+    p1.stderr.close()
+    return out.decode('utf-8') + "\n" + err.decode('utf-8')
 
 async def tail(filename, n):
     command = 'tail -n '+str(n)+' '+filename
