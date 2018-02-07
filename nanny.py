@@ -53,7 +53,7 @@ async def cmd_help(message, params):
     if params == "":
         msg = "```\nAvailable Commands:\n"
         for cmd in sorted(cmds):
-            msg += "`cmd` "
+            msg += "`{}`".format(cmd)
         msg += "```"
     else:
         params = params.split(' ')
