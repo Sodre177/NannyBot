@@ -14,6 +14,6 @@ token = ----
 prefix = ~~
 authorised_users = [299175087389802496]
 
-app_scripts = {"ls" : "ls", "pull" : "../scripts/pull.sh", "kill" : "pkill -f "main.py", "restart" : "../scripts/restart.sh"}
+app_scripts = {"ls" : "ls", "pull" : "../scripts/pull.sh", "kill" : "pkill -f \"main.py\"", "restart" : "../scripts/restart.sh"}
 app_logfiles = {"paralog" : "../logs/paralog.log", "debuglog" : "../logs/debuglog.log"}
 ```
