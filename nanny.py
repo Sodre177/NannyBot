@@ -3,8 +3,10 @@ import asyncio
 import os
 import subprocess
 import json
+import traceback
 
 from botconf import Conf
+
 
 #Initialise and load settings
 CONF_FILE = "nanny.conf"
@@ -91,16 +93,18 @@ async def cmd_logtail(message, params):
         return
     if len(params) == 1:
         if len(LOGFILES) > 0:
-            params[1] = next(iter(LOGFILES))
+            logfile = next(iter(LOGFILES))
             await reply(message, "Assuming you meant logfile "+params[1])
-    if params[1] not in LOGFILES:
-        await reply(message, "This is not a valid logfile!")
-        return
+    else:
+        if params[1] not in LOGFILES:
+            await reply(message, "This is not a valid logfile!")
+            return
+        logfile = params[1]
     if not params[0].isdigit():
         await reply(message, cmds["logtail"][1])
         return
     try:
-        logs = await tail(LOGFILES[params[1]], params[0])
+        logs = await tail(LOGFILES[logfile], params[0])
         await reply(message, "Here are your logs:\n```{}```".format(logs))
     except:
         await reply(message, "Oh dear, I couldn't send your logs for some reason. Maybe they don't exist or the message is too large?")
