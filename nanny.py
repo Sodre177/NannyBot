@@ -35,7 +35,7 @@ def cmd(cmdName, helpStr="No help provided for this command"):
 
 #Utility
 async def execute(command):
-    p1 = subprocess.Popen(command, shell = True, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.stdout)
+    p1 = subprocess.Popen(command, shell = True, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     out,err = p1.communicate()
     p1.stdout.close()
     return out.decode('utf-8')
