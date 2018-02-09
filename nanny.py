@@ -78,7 +78,7 @@ async def cmd_sendlog(message, params):
         return
     try:
         await reply(message, "Sending your logfile now, hold on!")
-        client.send_file(message.channel, LOGFILES[params[0]])
+        await client.send_file(message.channel, LOGFILES[params[0]])
     except:
         await reply(message, "Oh dear, I couldn't send your logfile. Maybe it is too large or doesn't exist?")
     return
