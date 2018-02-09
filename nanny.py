@@ -101,7 +101,10 @@ async def cmd_logtail(message, params):
         logfile = params[1]
     try:
         logs = await tail(LOGFILES[logfile], params[0])
-        await reply(message, "Here are your logs:\n```{}```".format(logs))
+        if not logs:
+            await reply(message, "I don't have anything to send you!")
+        else:
+            await reply(message, "Here are your logs:\n```{}```".format(logs))
     except:
         await reply(message, "Oh dear, I couldn't send your logs for some reason. Maybe they don't exist or the message is too large?")
     return
