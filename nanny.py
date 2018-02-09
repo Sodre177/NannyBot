@@ -87,21 +87,18 @@ async def cmd_sendlog(message, params):
 @cmd("logtail", "Usage: logtail <number of lines> <logname>\n\nSends the last <number> lines of the logfile <logname> specified in the config file.")
 async def cmd_logtail(message, params):
     params = params.split(' ')
-    if len(params) == 0:
+    if params[0] == "":
         await reply(message, "Available logfiles: "+ ", ".join(sorted(LOGFILES)))
         return
     if len(params) == 1:
         if len(LOGFILES) > 0:
             logfile = next(iter(LOGFILES))
-            await reply(message, "Assuming you meant logfile "+params[1])
+            await reply(message, "Assuming you meant logfile "+logfile)
     else:
         if params[1] not in LOGFILES:
             await reply(message, "This is not a valid logfile!")
             return
         logfile = params[1]
-    if not params[0].isdigit():
-        await reply(message, cmds["logtail"][1])
-        return
     try:
         logs = await tail(LOGFILES[logfile], params[0])
         await reply(message, "Here are your logs:\n```{}```".format(logs))
